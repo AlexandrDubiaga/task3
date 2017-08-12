@@ -4,9 +4,9 @@ class FileData
     protected $arr;
     protected $strChange;
 
-    public function getRow($filePath)
+    public function getData($filePath)
     {
-        return $this->getRowingFile($filePath);
+        return $this->getDataFromFile($filePath);
     }
 
     public function readStringFile($filePath,$valStringNumber)
@@ -44,7 +44,7 @@ class FileData
     }
 
 
-    protected function getRowingFile($file)
+    protected function getDataFromFile($file)
     {
         try
         {
@@ -72,7 +72,7 @@ class FileData
                 throw new Exception('readByStringFile Error params');
             }else
             {
-                foreach ($this->getRow($filePath) as $key => $value)
+                foreach ($this->getDataFromFile($filePath) as $key => $value)
                 {
                     if ($key == $valStringNumber)
                     {
@@ -95,7 +95,7 @@ class FileData
                 throw new Exception('getFromFileByDigits error value params');
             }else
             {
-                foreach ($this->getRow($filePath) as $keyFile => $valueFile)
+                foreach ($this->getDataFromFile($filePath) as $keyFile => $valueFile)
                 {
                     if ($keyFile == $numberString)
                     {
@@ -141,7 +141,7 @@ class FileData
                     }
                 }
                 fclose($open);
-                return $this->getRow($filePatch);
+                return $this->getDataFromFile($filePatch);
             }
        }catch (Exception $changeStringInFile)
        {
@@ -158,7 +158,7 @@ class FileData
                 throw new Exception('changeSymbolInFile error params');
             }else
             {
-                foreach ($this->getRow($filePatch) as $keyFile => $valueFile)
+                foreach ($this->getDataFromFile($filePatch) as $keyFile => $valueFile)
                 {
                     if ($keyFile == $numberString)
                     {
@@ -192,7 +192,7 @@ class FileData
                     fclose($f);
                 }
             }
-            return $this->getRow($filePatch);
+            return $this->getDataFromFile($filePatch);
         }catch(Exception $changeSymbolInFile)
         {
             echo $changeSymbolInFile->getMessage();
@@ -201,7 +201,7 @@ class FileData
 
     protected function showByString($pathToFile)
     {
-        foreach ($this->getRowingFile($pathToFile) as $key => $value)
+        foreach ($this->getDataFromFile($pathToFile) as $key => $value)
         {
             $resultArray[$key] = $value;
         }
@@ -218,7 +218,7 @@ class FileData
                 throw  new Exception('showByDigits error params');
             }else
             {
-                $resultArray[] = str_split(implode(" ",$this->getRowingFile($pathToFile)));
+                $resultArray[] = str_split(implode(" ",$this->getDataFromFile($pathToFile)));
                 return $resultArray;
             }
         }catch (Exception $showByDigits)
@@ -237,7 +237,7 @@ class FileData
                 throw  new Exception('saveToFileData error');
             } else
             {
-                file_put_contents($patchToFile, $this->getRowingFile($patchToFile));
+                file_put_contents($patchToFile, $this->getDataFromFile($patchToFile));
             }
         }catch (Exception $saveToFileData)
         {
